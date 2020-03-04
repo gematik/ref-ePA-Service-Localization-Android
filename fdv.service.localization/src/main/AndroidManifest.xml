@@ -1,0 +1,15 @@
+<manifest package="de.gematik.ti.epa.android.fdv.service.localization">
+
+    <!-- <uses-feature android:name="android.hardware.usb.host" /> -->
+    <application>
+        <!--<activity android:name=".activities.UsbReceiveActivity">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />-->
+        <!--</intent-filter>-->
+        <!--<meta-data-->
+        <!--android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"-->
+        <!--android:resource="@xml/usb_device_filter" />-->
+        <!--</activity>-->
+    </application>
+
+</manifest>

@@ -85,4 +85,6 @@ settings.properties
 */.gradle/
 */*.plantuml
 
-epa.service.localization/doc/images/esl4a/generated/
+gradle/
+fdv.service.localization/src/test/**/*.plantuml
+fdv.service.localization/doc/userguide/.asciidoctor

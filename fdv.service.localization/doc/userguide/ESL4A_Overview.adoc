@@ -1,0 +1,71 @@
+include::config.adoc[]
+
+== Overview
+
+ifndef::useCachePlantuml[]
+
+.ePA Service Localization Android structure
+[plantuml, esl4a/generated/localization, png, caption="{classdia-caption} {counter:class}: ", 650]
+----
+include::{plantumldir}/ESL4A/localization.plantuml[]
+----
+
+endif::useCachePlantuml[]
+ifdef::useCachePlantuml[]
+
+.ePA Service Localization Android structure
+image::esl4a/generated/localization.png[caption="{classdia-caption} {counter:class}: "]
+
+{empty} +
+
+endif::useCachePlantuml[]
+
+=== ServiceLocator
+// tag::ServiceLocator[]
+
+The ServiceLocator class implements the IServiceLocalizer interface from ePA service localization api and provides methods to start a new DNS lookup, e.g. if previous one ended erroneously,
+to get the endpoint URL for a given interface name after a successful lookup, the status of
+service lookup in DNS and the home community (OID, which the file system provider has requested from DIMDI).
+The implementation in Android should be asynchronous as in the following example:
+
+[source,java]
+----
+    private class DnsTxtRecord {
+        private final String fqdn;
+
+        public DnsTxtRecord(String fqdn) {
+            this.fqdn = fqdn;
+        }
+
+        @SuppressLint("StaticFieldLeak")
+        public DnsTxtRecord invoke() {
+            new AsyncTask<Void,Void,Void>(){
+
+                @Override
+                protected Void doInBackground(Void... voids) {
+                    IServiceLocator locator = new ServiceLocatorFactory.getInstance();
+                    locator.lookup(fqdn);
+
+                    LookupStatus lookupStatus = locator.getLookupStatus();
+                    URL endpoint = locator.endpointURLForInterface(ServiceInterfaceName.IAccountManagementInsurant);
+                    String hcid = locator.getHomeCommunityID();
+
+                    this.cancel(true);
+                    return null;
+        }
+
+    }.execute();
+
+            return null;
+        }
+    }
+----
+
+// end::ServiceLocator[]
+
+=== GatewayModulePathType
+// tag::GatewayModulePathType[]
+
+The GatewayModulePathType object represents the properties (path, time to live, valid until) of an ePA service module.
+
+// end::GatewayModulePathType[]

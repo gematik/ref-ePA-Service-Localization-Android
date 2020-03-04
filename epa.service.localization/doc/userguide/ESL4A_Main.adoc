@@ -1,5 +1,0 @@
-include::config.adoc[]
-== ePA Service Localization Android
-include::ESL4A_Introduction.adoc[]
-include::ESL4A_Structure.adoc[]
-include::ESL4A_GettingStarted.adoc[]
